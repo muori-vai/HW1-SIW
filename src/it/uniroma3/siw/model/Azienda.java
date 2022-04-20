@@ -11,6 +11,14 @@ import javax.persistence.OneToOne;
 @Entity
 public class Azienda {
 
+	public Azienda(Long id, String ragioneSociale, String numeroTelefono, Indirizzo indirizzo) {
+		super();
+		this.id = id;
+		this.ragioneSociale = ragioneSociale;
+		this.numeroTelefono = numeroTelefono;
+		this.indirizzo = indirizzo;
+	}
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
@@ -19,7 +27,6 @@ public class Azienda {
 	private String ragioneSociale;
 	private String numeroTelefono;
 	
-	//Per avere subito l'indirizzo
 	@OneToOne(cascade = {CascadeType.PERSIST}) //CascadeType.REMOVE?
 	private Indirizzo indirizzo;
 

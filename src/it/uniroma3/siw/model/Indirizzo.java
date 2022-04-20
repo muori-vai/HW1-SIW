@@ -9,6 +9,16 @@ import javax.persistence.Id;
 @Entity
 public class Indirizzo {
 
+	public Indirizzo(Long id, String via, int numeroCivico, String comune, int cAP, String provincia) {
+		super();
+		this.id = id;
+		this.via = via;
+		this.numeroCivico = numeroCivico;
+		this.comune = comune;
+		CAP = cAP;
+		this.provincia = provincia;
+	}
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;

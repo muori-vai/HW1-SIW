@@ -13,6 +13,18 @@ import javax.persistence.OneToMany;
 @Entity
 public class Docente {
 
+	public Docente(Long id, String nome, String cognome, String luogoNascita, LocalDate dataNascita, String partitaIVA,
+			List<Corso> corsi) {
+		super();
+		this.id = id;
+		this.nome = nome;
+		this.cognome = cognome;
+		this.luogoNascita = luogoNascita;
+		this.dataNascita = dataNascita;
+		this.partitaIVA = partitaIVA;
+		this.corsi = corsi;
+	}
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
@@ -24,7 +36,9 @@ public class Docente {
 	private LocalDate dataNascita;
 	private String partitaIVA;
 	
-	@OneToMany(mappedBy = "docente")
+	@OneToMany(mappedBy = "docente") //fetch = FetchType.EAGER?
+	  								 //in base all'applicazione, qui si potrebbe mettere EAGER nel caso
+	  								 //fosse più efficiente caricare anche tutti i corsi di un docente
 	private List<Corso> corsi;
 
 	public Long getId() {

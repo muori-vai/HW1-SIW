@@ -14,6 +14,20 @@ import javax.persistence.ManyToOne;
 @Entity
 public class Allievo {
 
+	public Allievo(Long id, String nome, String cognome, LocalDate dateNascita, String luogoNascita, String matricola,
+			String email, List<Corso> corsi, Azienda azienda) {
+		super();
+		this.id = id;
+		this.nome = nome;
+		this.cognome = cognome;
+		this.dateNascita = dateNascita;
+		this.luogoNascita = luogoNascita;
+		this.matricola = matricola;
+		this.email = email;
+		this.corsi = corsi;
+		this.azienda = azienda;
+	}
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
@@ -27,6 +41,8 @@ public class Allievo {
 	private String email;
 	
 	@ManyToMany(mappedBy = "allievi") //fetch = FetchType.EAGER?
+									  //in base all'applicazione, qui si potrebbe mettere EAGER nel caso
+									  //fosse più efficiente caricare anche tutti i corsi di un allievo
 	private List<Corso> corsi;
 	
 	@ManyToOne

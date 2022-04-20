@@ -3,6 +3,7 @@ package it.uniroma3.siw.model;
 import java.time.LocalDate;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,6 +15,16 @@ import javax.persistence.ManyToOne;
 @Entity
 public class Corso {
 	
+	public Corso(Long id, String nome, LocalDate dataInizio, int mesi, List<Allievo> allievi, Docente docente) {
+		super();
+		this.id = id;
+		this.nome = nome;
+		this.dataInizio = dataInizio;
+		this.mesi = mesi;
+		this.allievi = allievi;
+		this.docente = docente;
+	}
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
@@ -26,7 +37,7 @@ public class Corso {
 	@ManyToMany
 	private List<Allievo> allievi;
 	
-	@ManyToOne
+	@ManyToOne(cascade = {CascadeType.PERSIST})
 	private Docente docente;
 
 	public Long getId() {
